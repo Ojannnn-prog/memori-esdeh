@@ -368,7 +368,12 @@ h1, h2, h3, h4 {
 
 .masonry-grid {
     column-count: 3;
-    column-gap: 25px;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.pas-foto-grid {
+    column-count: 4;
 }
 
 .grid-item {
@@ -530,6 +535,7 @@ h1, h2, h3, h4 {
     .timeline-item::after { left: 21px; }
     
     .masonry-grid { column-count: 2; }
+    .pas-foto-grid { column-count: 3; }
     
     /* Navbar Mobile Fix */
     .navbar {
@@ -571,6 +577,7 @@ h1, h2, h3, h4 {
     .nav-links a { font-size: 0.85rem; }
     .intro-content { padding: 1.5rem; }
     .masonry-grid { column-count: 1; }
+    .pas-foto-grid { column-count: 2; }
 }
 
 /* Theme Button */
