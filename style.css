@@ -1,0 +1,744 @@
+/* Color Variables */
+:root {
+    --bg-color: #f4e8d3;
+    --sepia-dark: #3e2723;
+    --sepia-medium: #5d4037;
+    --sepia-light: #8d6e63;
+    --accent-color: #d7ccc8;
+    --paper-color: #fdfbf7;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Special Elite', cursive;
+    --navbar-bg: rgba(244, 232, 211, 0.9);
+    --hero-bg: rgba(253, 251, 247, 0.9);
+    --timeline-bg: rgba(244, 232, 211, 0.5);
+    --form-bg: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1210;
+    --sepia-dark: #e0d0c8;
+    --sepia-medium: #bcaaa4;
+    --sepia-light: #8d6e63;
+    --accent-color: #3e2723;
+    --paper-color: #271a15;
+    --navbar-bg: rgba(26, 18, 16, 0.9);
+    --hero-bg: rgba(39, 26, 21, 0.9);
+    --timeline-bg: rgba(26, 18, 16, 0.5);
+    --form-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for sticky navbar */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--sepia-dark);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    /* Tekstur kertas usang */
+    background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--sepia-dark);
+    border-bottom: 2px dashed var(--sepia-light);
+    display: inline-block;
+    padding-bottom: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Overlay Pembuka */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, var(--bg-color) 0%, var(--sepia-dark) 150%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.intro-content {
+    text-align: center;
+    background: url('https://www.transparenttextures.com/patterns/paper.png') var(--paper-color);
+    padding: 4rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    border: 3px double var(--sepia-medium);
+    max-width: 600px;
+}
+
+.vintage-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--sepia-dark);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.vintage-text {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.retro-btn {
+    background-color: var(--sepia-dark);
+    color: var(--bg-color);
+    border: 2px solid var(--sepia-dark);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0px var(--sepia-light);
+}
+
+.retro-btn:hover {
+    background-color: var(--bg-color);
+    color: var(--sepia-dark);
+    box-shadow: 2px 2px 0px var(--sepia-light);
+    transform: translate(2px, 2px);
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    z-index: 1000;
+    border-bottom: 2px solid var(--sepia-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.nav-brand {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--sepia-dark);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--sepia-dark);
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    position: relative;
+    font-weight: bold;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--sepia-dark);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.hero-content {
+    background: url('https://www.transparenttextures.com/patterns/paper.png') var(--hero-bg);
+    padding: 4rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 2px dashed var(--sepia-medium);
+    z-index: 10;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--sepia-medium);
+    line-height: 1.6;
+}
+
+/* Antigravity Ornaments */
+.ornament-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.ornament {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    filter: sepia(0.8) opacity(0.4) drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+}
+
+.ornament.active {
+    opacity: 0.5;
+}
+
+.radio {
+    width: 180px;
+    top: 20%;
+    left: 8%;
+    animation: antigravity 8s ease-in-out infinite alternate;
+}
+
+.tv {
+    width: 200px;
+    bottom: 30%;
+    right: 10%;
+    animation: antigravity 10s ease-in-out infinite alternate-reverse;
+}
+
+.newspaper {
+    width: 150px;
+    top: 45%;
+    left: 85%;
+    animation: antigravity 12s ease-in-out infinite alternate;
+    transform: rotate(15deg);
+}
+
+@keyframes antigravity {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-40px) rotate(8deg); }
+    100% { transform: translateY(20px) rotate(-5deg); }
+}
+
+/* Timeline */
+.timeline-section {
+    padding: 5rem 10%;
+    position: relative;
+    background-color: var(--timeline-bg);
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--sepia-medium);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: -12px;
+    background-color: var(--paper-color);
+    border: 4px solid var(--sepia-dark);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 0 4px var(--bg-color);
+}
+
+.left { left: 0; }
+.right { left: 50%; }
+.right::after { left: -12px; }
+
+.timeline-content {
+    padding: 25px 30px;
+    background: url('https://www.transparenttextures.com/patterns/paper.png') var(--paper-color);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--sepia-light);
+    box-shadow: 5px 5px 0px var(--sepia-medium);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow: 8px 8px 0px var(--sepia-dark);
+}
+
+.timeline-content h3 {
+    margin-bottom: 12px;
+    font-size: 1.6rem;
+    color: var(--sepia-dark);
+}
+
+.timeline-content p {
+    line-height: 1.6;
+}
+
+.timeline-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 2px solid var(--sepia-light);
+    filter: sepia(0.6) contrast(1.1);
+    transition: filter 0.4s ease;
+}
+
+.timeline-content:hover .timeline-img {
+    filter: sepia(0) contrast(1);
+}
+
+/* Gallery Masonry */
+.gallery-section {
+    padding: 5rem 10%;
+    background-color: var(--accent-color);
+    margin-bottom: 120px;
+    border-top: 2px dashed var(--sepia-light);
+    border-bottom: 2px dashed var(--sepia-light);
+}
+
+.gallery-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.masonry-grid {
+    column-count: 3;
+    column-gap: 25px;
+}
+
+.grid-item {
+    break-inside: avoid;
+    margin-bottom: 25px;
+    background: var(--paper-color);
+    padding: 15px 15px 50px 15px;
+    border: 1px solid var(--sepia-light);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+}
+
+/* Meniru selotip atau jepitan foto */
+.grid-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 60px;
+    height: 20px;
+    background-color: rgba(255,255,255,0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.grid-item:hover {
+    transform: scale(1.05) rotate(2deg);
+    z-index: 10;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(0.7) contrast(1.2) brightness(0.9);
+    transition: filter 0.4s;
+}
+
+.grid-item:hover img {
+    filter: sepia(0) contrast(1) brightness(1);
+}
+
+/* Music Player */
+.music-player {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('https://www.transparenttextures.com/patterns/paper.png') var(--paper-color);
+    padding: 15px 35px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 2px solid var(--sepia-medium);
+    z-index: 1000;
+    width: 90%;
+    max-width: 650px;
+    transition: transform 0.3s ease;
+}
+
+.music-player:hover {
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.vinyl-record {
+    width: 45px;
+    height: 45px;
+    background: #111;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-color);
+    font-size: 14px;
+    border: 3px solid #333;
+    box-shadow: inset 0 0 0 5px #222;
+}
+
+.vinyl-record.spin {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.track-details h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--sepia-dark);
+}
+
+.track-details p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--sepia-light);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.player-controls button {
+    background: none;
+    border: none;
+    color: var(--sepia-dark);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.player-controls button:hover {
+    color: var(--sepia-light);
+    transform: scale(1.1);
+}
+
+.progress-container {
+    position: absolute;
+    bottom: -2px;
+    left: 5%;
+    width: 90%;
+    height: 6px;
+    background: var(--accent-color);
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--sepia-dark);
+    border-radius: 5px;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .vintage-title { font-size: 3rem; }
+    .hero-title { font-size: 3rem; }
+    
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-item.right { left: 0%; }
+    .timeline-item::after { left: 21px; }
+    
+    .masonry-grid { column-count: 2; }
+    
+    .music-player { 
+        flex-direction: column; 
+        border-radius: 20px; 
+        padding: 20px; 
+        bottom: 10px;
+    }
+    .progress-container { bottom: 0; width: 100%; left: 0; border-radius: 0 0 20px 20px; height: 8px;}
+    
+    .ornament { display: none; /* Hide on small screens for better performance/look */ }
+}
+
+@media (max-width: 480px) {
+    .nav-links { gap: 1rem; font-size: 0.9rem; }
+    .masonry-grid { column-count: 1; }
+    .intro-content { padding: 2rem; }
+    .vintage-title { font-size: 2.5rem; }
+}
+
+/* Theme Button */
+.theme-btn {
+    background: none;
+    border: none;
+    color: var(--sepia-dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.theme-btn:hover {
+    color: var(--sepia-light);
+}
+
+/* Messages Section */
+.messages-section {
+    padding: 5rem 10%;
+    background-color: var(--paper-color);
+    margin-bottom: 120px;
+}
+.messages-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+.messages-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--form-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px dashed var(--sepia-medium);
+}
+.message-form input, .message-form textarea {
+    padding: 12px;
+    border: 1px solid var(--sepia-light);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: var(--paper-color);
+    color: var(--sepia-dark);
+}
+.submit-btn {
+    align-self: flex-start;
+}
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.message-card {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--sepia-medium);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+.message-card h4 {
+    margin-bottom: 5px;
+    color: var(--sepia-dark);
+}
+.message-date {
+    font-size: 0.8rem;
+    color: var(--sepia-light);
+    margin-bottom: 10px;
+}
+
+/* ================================
+   LIGHTBOX
+================================ */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 3px solid var(--sepia-medium);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.lightbox.active .lightbox-content img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.lightbox-caption {
+    margin-top: 12px;
+    color: rgba(255,255,255,0.7);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+/* Close button */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 9100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close:hover {
+    background: rgba(255,255,255,0.25);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Prev / Next nav */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 2.5rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9100;
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-nav:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Cursor pointer on gallery images */
+.grid-item img {
+    cursor: zoom-in;
+}
+
+@media (max-width: 768px) {
+    .lightbox-nav { display: none; }
+    .lightbox-close { top: 12px; right: 12px; width: 42px; height: 42px; font-size: 1.6rem; }
+}
