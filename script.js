@@ -157,61 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // === Guestbook / Messages Logic ===
-    const messageForm = document.getElementById('message-form');
-    const messagesList = document.getElementById('messages-list');
-    const senderName = document.getElementById('sender-name');
-    const senderMessage = document.getElementById('sender-message');
+    // Catatan: Logika Guestbook/Pesan sudah dipindahkan ke firebase.js (Firestore)
 
-    // Load messages
-    function loadMessages() {
-        const messages = JSON.parse(localStorage.getItem('school_memories_messages') || '[]');
-        messagesList.innerHTML = '';
-        if (messages.length === 0) {
-            messagesList.innerHTML = '<p style="text-align:center; color:var(--sepia-light);">Belum ada pesan. Jadilah yang pertama!</p>';
-            return;
-        }
-        
-        // Reverse to show newest first
-        const reversedMessages = [...messages].reverse();
-        reversedMessages.forEach(msg => {
-            const card = document.createElement('div');
-            card.className = 'message-card';
-            card.innerHTML = `
-                <h4>${msg.name}</h4>
-                <div class="message-date">${msg.date}</div>
-                <p>${msg.text}</p>
-            `;
-            messagesList.appendChild(card);
-        });
-    }
-
-    // Only load if element exists (safety check)
-    if (messageForm) {
-        loadMessages();
-
-        messageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const newMsg = {
-                name: senderName.value.trim(),
-                text: senderMessage.value.trim(),
-                date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })
-            };
-            
-            if (newMsg.name && newMsg.text) {
-                const messages = JSON.parse(localStorage.getItem('school_memories_messages') || '[]');
-                messages.push(newMsg);
-                localStorage.setItem('school_memories_messages', JSON.stringify(messages));
-                
-                // Reset form
-                senderName.value = '';
-                senderMessage.value = '';
-                
-                // Reload list
-                loadMessages();
-            }
-        });
-    }
 
     // ============================================
     // LIGHTBOX - Zoom foto galeri
