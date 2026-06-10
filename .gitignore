@@ -1,0 +1,6 @@
+# Mengabaikan folder instalasi NPM
+node_modules/
+
+# Mengabaikan file JavaScript asli agar tidak terekspos ke publik
+script.js
+firebase.js
